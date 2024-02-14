@@ -22,8 +22,7 @@ abstract public class Character {
     private static Random rnd = new Random();
 
 
-
-    public Character(int id, String name, int level, int health,int protection) {
+    public Character(int id, String name, int level, int health, int protection) {
         this.id = id;
         this.name = name;
         this.level = level;
@@ -33,37 +32,42 @@ abstract public class Character {
     }
 
     public String toInfo() {
-        return String.format("Id = %d; Name = %s; Level = %d; Health = %d; Protection = %d", id,name,level,health,protection);
+        return String.format("Id = %d; Name = %s; Level = %d; Health = %d; Protection = %d", id, name, level, health, protection);
     }
 
     @Override
     public String toString() {
-        return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name );
+        return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);
     }
 
-    public void heroIsDead(Character target){
-        if (target.getHealth()<=0){
+    public void heroIsDead(Character target) {
+        if (target.getHealth() <= 0) {
             System.out.printf("%s dead.", target.getName());
-        }else System.out.printf("There is life left %d", target.getHealth());
+        } else System.out.printf("%s is life left %d, protection left %d\n",target.getName(), target.getHealth(),
+                target.getProtection());
 
     }
 
-    protected int GetDamage(int damage,Character target){
-       target.health -= damage;
-       return target.health;
+    protected int dealDamage(int damage, Character target) {
+        if (target.protection>0){
+            target.protection -= damage*2;
+            setProtection(target.protection);
+            target.health -= damage/2;
+            setHealth(target.health);
+            return damage/2;
+        }else {
+            target.health -= damage+10;
+            setHealth(target.health);
+            return damage+10;
+        }
 
     }
     public void Attack(Character target) {
-        int damage = Character.rnd.nextInt(1,5);
-        System.out.printf("Нанесено урона %d\n", damage);
-//        target.GetDamage(damage,target);
-        System.out.println(target.getHealth()+ " текущее здоровье\n");
-        target.setHealth(target.GetDamage(damage,target));
-        System.out.println(target.getHealth()+ " после сета\n");
+        int damage = Character.rnd.nextInt(2, 4);
+        System.out.printf("%s caused damage %d to %s!\n",this.getName(),Character.this.dealDamage(damage, target), target.getName());
         heroIsDead(target);
 
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -84,29 +88,6 @@ abstract public class Character {
         this.protection = protection;
     }
 
-
-    //    public void healed(int Hp) {
-//        this.hp = Hp + this.hp > this.maxHp ? this.maxHp : Hp + this.hp;
-//    }
-//
-//    public void GetDamage(int damage) {
-//        if (this.hp - damage > 0) {
-//            this.hp -= damage;
-//        }
-//        // else { die(); }
-//    }
-//
-//    public void Attack(BaseHero target) {
-//        int damage = BaseHero.r.nextInt(10, 20);
-//        target.GetDamage(damage);
-//    }
-
-
-
-
-
-
-
     public int getId() {
         return id;
     }
@@ -126,8 +107,6 @@ abstract public class Character {
     public int getProtection() {
         return protection;
     }
-
-
 
 
 }

@@ -21,6 +21,29 @@ public class Peasant extends Character {
     }
 
     @Override
+    protected int dealDamage(int damage, Character target) {
+        this.stamina -= this.strength / 2;
+        setStamina(this.stamina);
+        if (target.getProtection() > 0) {
+            target.protection -= damage * this.strength;
+            target.setProtection(target.protection);
+            target.health -= (damage * this.agility) / 2;
+            target.setHealth(target.health);
+            return (damage * this.agility) / 2;
+        } else {
+            target.health -= damage * this.strength;
+            target.setHealth(target.health);
+            return damage * this.strength;
+        }
+
+    }
+
+    @Override
+    public void Attack(Character target) {
+        super.Attack(target);
+    }
+
+    @Override
     public String toInfo() {
         return String.format("%s Strength = %d; Agility = %d; Stamina = %d", super.toInfo(), strength, agility, stamina);
     }
@@ -30,16 +53,27 @@ public class Peasant extends Character {
         return super.toString();
     }
 
+    public int getStrength() {
+        return strength;
+    }
 
-    public void setStrength(int strength) {
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    protected void setStrength(int strength) {
         this.strength = strength;
     }
 
-    public void setAgility(int agility) {
+    protected void setAgility(int agility) {
         this.agility = agility;
     }
 
-    public void setStamina(int stamina) {
+    protected void setStamina(int stamina) {
         this.stamina = stamina;
     }
 }
