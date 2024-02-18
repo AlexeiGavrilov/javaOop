@@ -1,9 +1,9 @@
 package seminar1.characters;
 
-import com.sun.source.tree.IfTree;
+import seminar1.characters.interfaces.ActionsOfChar;
 
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.SortedMap;
 
 /*Проанализировать персонажей "Крестьянин, Разбойник, Снайпер, Колдун, Копейщик, Арбалетчик, Монах".
 Для каждого определит 8 полей данных(здоровье, сила итд) 3-4 поля поведения(методов атаковать, вылечить итд).
@@ -12,34 +12,44 @@ import java.util.SortedMap;
 Создать в основной программе по одному обьекту каждого не абстрактного класса и вывести в консоль его имя.
 
 Формат сдачи:*/
-abstract public class Character {
-    protected int id;
+abstract public class Character implements ActionsOfChar {
+    private static int count;
     protected String name;
-    protected int level;
     protected int health;
     protected int protection;
+    protected Place position;
+    protected int id;
 
+    static {count =0;}
     private static Random rnd = new Random();
 
-
-    public Character(int id, String name, int level, int health, int protection) {
-        this.id = id;
+    public Character(String name, int x, int y) {
+        count++;
+        this.position = new Place(x,y);
         this.name = name;
-        this.level = level;
-        this.health = health;
-        this.protection = protection;
-
+        this.health = 1;
+        this.protection = 1;
     }
 
+    public int findNearestEnemy(ArrayList<Character> targetTeam){
+        double minDistanse = Double.MAX_VALUE;
+        int id = -1;
+        for (Character character : targetTeam) {
+            if (Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
+                    character.getPosition().getX(),character.getPosition().getY()) < minDistanse){
+                minDistanse = Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
+                        character.getPosition().getX(),character.getPosition().getY());
+                id = character.getId();
+            }
+        }
+        return id;
+    }
     public String toInfo() {
-        return String.format("Id = %d; Name = %s; Level = %d; Health = %d; Protection = %d", id, name, level, health, protection);
+        return String.format("Type = %s; ID = %d; Name = %s; Health = %d; Protection = %d",
+                this.getClass().getSimpleName(),id, name,  health, protection);
     }
-
     @Override
-    public String toString() {
-        return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);
-    }
-
+    public String toString() {return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);}
     public void heroIsDead(Character target) {
         if (target.getHealth() <= 0) {
             System.out.printf("%s dead.", target.getName());
@@ -51,6 +61,11 @@ abstract public class Character {
     protected int dealDamage(int damage, Character target) {
         if (target.protection>0){
             target.protection -= damage*2;
+            if (target.protection <= 0){
+                target.health -= damage+10;
+                setHealth(target.health);
+                return damage+10;
+            }
             setProtection(target.protection);
             target.health -= damage/2;
             setHealth(target.health);
@@ -68,45 +83,22 @@ abstract public class Character {
         heroIsDead(target);
 
     }
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) {this.name = name;}
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
+    public void setHealth(int health) {this.health = health;}
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
+    public void setProtection(int protection) {this.protection = protection;}
 
-    public void setProtection(int protection) {
-        this.protection = protection;
-    }
+    public String getName() {return name;}
 
-    public int getId() {
-        return id;
-    }
+    public int getHealth() {return health;}
 
-    public String getName() {
-        return name;
-    }
+    public int getProtection() {return protection;}
 
-    public int getLevel() {
-        return level;
-    }
+    public int getId() {return id;}
 
-    public int getHealth() {
-        return health;
-    }
+    public Place getPosition() {return position;}
 
-    public int getProtection() {
-        return protection;
-    }
-
-
+    public static int getCount(){return count;}
 }
