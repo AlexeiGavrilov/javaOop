@@ -45,8 +45,8 @@ abstract public class Character implements ActionsOfChar {
         return id;
     }
     public String toInfo() {
-        return String.format("Type = %s; ID = %d; Name = %s; Health = %d; Protection = %d",
-                this.getClass().getSimpleName(),id, name,  health, protection);
+        return String.format("Type = %s; ID = %d; Name = %s; Position = (%d,%d); Health = %d; Protection = %d",
+                this.getClass().getSimpleName(),id, name, position.getX(),position.getY(),health, protection);
     }
     @Override
     public String toString() {return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);}
