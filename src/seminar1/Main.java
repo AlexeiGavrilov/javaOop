@@ -8,11 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    public static ArrayList<Character> team1 = new ArrayList<>();
-    public static ArrayList<Character> team2 = new ArrayList<>();
 
     public static void main(String[] args) {
-
+        ArrayList<Character> team1 = new ArrayList<>();
+        ArrayList<Character> team2 = new ArrayList<>();
         FillTeam.FillTeamRandomChar(team1, team2);
         for (Character character : team1) {
             System.out.println(character.toInfo());
