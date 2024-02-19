@@ -23,8 +23,15 @@ public class Main {
         for (Character character : team2) {
             System.out.println(character.toInfo());
         }
-        team1.get(2).Attack(team2.get(3));
-        System.out.println(team1.get(3).findNearestEnemy(team2));
+
+        for (Character character : team2) {
+            if (character instanceof Sniper){
+                character.step(team1);
+            }
+
+        }
+
+
 
     }
 

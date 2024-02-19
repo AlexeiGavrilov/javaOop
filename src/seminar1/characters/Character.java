@@ -1,6 +1,7 @@
 package seminar1.characters;
 
 import seminar1.characters.interfaces.ActionsOfChar;
+import seminar1.characters.interfaces.Step;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,7 +13,7 @@ import java.util.Random;
 Создать в основной программе по одному обьекту каждого не абстрактного класса и вывести в консоль его имя.
 
 Формат сдачи:*/
-abstract public class Character implements ActionsOfChar {
+abstract public class Character implements ActionsOfChar, Step {
     private static int count;
     protected String name;
     protected int health;
@@ -22,6 +23,7 @@ abstract public class Character implements ActionsOfChar {
 
     static {count =0;}
     private static Random rnd = new Random();
+
 
     public Character(String name, int x, int y) {
         count++;
@@ -50,12 +52,13 @@ abstract public class Character implements ActionsOfChar {
     }
     @Override
     public String toString() {return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);}
-    public void heroIsDead(Character target) {
+    public boolean heroIsDead(Character target) {
         if (target.getHealth() <= 0) {
             System.out.printf("%s dead.", target.getName());
+            return false;
         } else System.out.printf("%s is life left %d, protection left %d\n",target.getName(), target.getHealth(),
                 target.getProtection());
-
+        return true;
     }
 
     protected int dealDamage(int damage, Character target) {

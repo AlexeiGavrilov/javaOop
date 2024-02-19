@@ -1,11 +1,16 @@
 package seminar1.characters;
 
+import java.util.ArrayList;
+
 public class Crossbowman extends Character {
     protected  int agility;
     protected int stamina;
     protected int accuracy;
+
+    protected int arrows;
     public Crossbowman(String name, int x, int y) {
         super(name, x, y);
+        this.arrows = 5;
         this.health = 50;
         this.protection = 35;
         this.agility = 5;
@@ -40,6 +45,21 @@ public class Crossbowman extends Character {
     public String toInfo() {return String.format("%s Agility = %d; Accuracy = %d; Stamina = %d", super.toInfo(), agility,accuracy,stamina);}
     @Override
     public String toString() {return super.toString();}
+
+    public void step(ArrayList<Character> targetTeam) {
+        if(heroIsDead(Crossbowman.this)){
+            if (Crossbowman.this.getArrows()>0){
+                findNearestEnemy(targetTeam);
+
+
+                this.arrows-=1;
+                Crossbowman.this.setArrows(this.arrows);
+            }else {
+                System.out.println("Give me more arrows!!!");
+            }
+        };
+    }
+
     public int getAgility() {return agility;}
     public int getStamina() {return stamina;}
     public int getAccuracy() {return accuracy;}
@@ -47,5 +67,6 @@ public class Crossbowman extends Character {
     protected void setStamina(int stamina) {this.stamina = stamina;}
     protected void setAccuracy(int accuracy) {this.accuracy = accuracy;}
 
-
+    public int getArrows() {return arrows;}
+    protected void setArrows(int arrows) {this.arrows = arrows;}
 }

@@ -1,5 +1,7 @@
 package seminar1.characters;
 
+import java.util.ArrayList;
+
 public class Magician extends Character {
     protected int intelligence;
     protected int mana;
@@ -42,6 +44,11 @@ public class Magician extends Character {
     public String toInfo() {
         return String.format("%s ; Intelligence = %d; SpellAmplification = %d; " +
                 "Mana = %d;", super.toInfo(), intelligence, spellAmplification, mana);
+    }
+
+    @Override
+    public void step(ArrayList<Character> targetTeam) {
+
     }
     public int getIntelligence() {return intelligence;}
     public int getMana() {return mana;}

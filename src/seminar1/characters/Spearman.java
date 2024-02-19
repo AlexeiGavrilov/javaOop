@@ -1,5 +1,7 @@
 package seminar1.characters;
 
+import java.util.ArrayList;
+
 public class Spearman extends Character{
     protected int strength;
     protected int agility;
@@ -39,6 +41,11 @@ public class Spearman extends Character{
     @Override
     public String toInfo() {
         return String.format(" %s Strength = %d; Agility = %d; Stamina = %d;",super.toInfo(), strength, agility, stamina);
+    }
+
+    @Override
+    public void step(ArrayList<Character> targetTeam) {
+
     }
     public int getStrength() {return strength;}
     public int getAgility() {return agility;}

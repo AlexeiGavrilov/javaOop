@@ -1,6 +1,7 @@
 package seminar1.characters;
 
 import javax.lang.model.element.Name;
+import java.util.ArrayList;
 
 public class Peasant extends Character {
     protected int strength;
@@ -41,6 +42,11 @@ public class Peasant extends Character {
     @Override
     public String toInfo() {
         return String.format("%s Strength = %d; Agility = %d; Stamina = %d", super.toInfo(), strength, agility, stamina);
+    }
+
+    @Override
+    public void step(ArrayList<Character> targetTeam) {
+
     }
     @Override
     public String toString() {return super.toString();}

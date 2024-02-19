@@ -1,5 +1,7 @@
 package seminar1.characters;
 
+import java.util.ArrayList;
+
 public class Bandit extends Character {
     protected int strength;
     protected int agility;
@@ -49,4 +51,8 @@ public class Bandit extends Character {
     protected void setAgility(int agility) {this.agility = agility;}
     protected void setStamina(int stamina) {this.stamina = stamina;}
 
+    @Override
+    public void step(ArrayList<Character> targetTeam) {
+
+    }
 }

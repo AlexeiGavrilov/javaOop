@@ -1,5 +1,7 @@
 package seminar1.characters;
 
+import java.util.ArrayList;
+
 public class Monk extends Character {
     protected int faith;
     protected int chakra;
@@ -42,6 +44,11 @@ public class Monk extends Character {
     public String toInfo() {
         return String.format("%s ; Faith = %d; Chakra = %d; " +
                 " Mana = %d;", super.toInfo(), faith,chakra,mana);
+    }
+
+    @Override
+    public void step(ArrayList<Character> targetTeam) {
+
     }
     public int getFaith() {return faith;}
     public int getChakra() {return chakra;}
