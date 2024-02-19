@@ -10,6 +10,7 @@ public class Crossbowman extends Character {
     protected int arrows;
     public Crossbowman(String name, int x, int y) {
         super(name, x, y);
+        this.priority =3;
         this.arrows = 5;
         this.health = 50;
         this.protection = 35;
@@ -46,12 +47,12 @@ public class Crossbowman extends Character {
     @Override
     public String toString() {return super.toString();}
 
+    @Override
     public void step(ArrayList<Character> targetTeam) {
         if(heroIsDead(Crossbowman.this)){
             if (Crossbowman.this.getArrows()>0){
-                findNearestEnemy(targetTeam);
-
-
+                Attack(targetTeam.get(findNearestEnemy(targetTeam)-1));
+                System.out.println("Атаковали!!!");
                 this.arrows-=1;
                 Crossbowman.this.setArrows(this.arrows);
             }else {

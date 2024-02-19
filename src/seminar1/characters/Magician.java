@@ -8,6 +8,7 @@ public class Magician extends Character {
     protected int spellAmplification;
     public Magician(String name, int x, int y) {
         super(name, x, y);
+        this.priority = 1;
         this.health = 60;
         this.protection = 20;
         this.intelligence = 5;

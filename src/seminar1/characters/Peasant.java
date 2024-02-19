@@ -9,6 +9,7 @@ public class Peasant extends Character {
     protected int stamina;
     public Peasant(String name, int x, int y) {
         super(name, x, y);
+        this.priority =0;
         this.health = 30;
         this.protection = 10;
         this.strength = 4;

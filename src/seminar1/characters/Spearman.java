@@ -8,6 +8,7 @@ public class Spearman extends Character{
     protected int stamina;
     public Spearman(String name, int x, int y) {
         super(name, x, y);
+        this.priority = 2;
         this.health = 100;
         this.protection = 80;
         this.strength = 2;

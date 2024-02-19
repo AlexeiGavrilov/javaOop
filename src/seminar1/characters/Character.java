@@ -20,6 +20,7 @@ abstract public class Character implements ActionsOfChar, Step {
     protected int protection;
     protected Place position;
     protected int id;
+    protected int priority;
 
     static {count =0;}
     private static Random rnd = new Random();
@@ -27,6 +28,7 @@ abstract public class Character implements ActionsOfChar, Step {
 
     public Character(String name, int x, int y) {
         count++;
+        this.priority =0;
         this.position = new Place(x,y);
         this.name = name;
         this.health = 1;
@@ -104,4 +106,8 @@ abstract public class Character implements ActionsOfChar, Step {
     public Place getPosition() {return position;}
 
     public static int getCount(){return count;}
+    public int getPriority() {return priority;}
+
+
+
 }

@@ -9,6 +9,7 @@ public class Sniper extends Character {
     protected int arrows;
     public Sniper(String name, int x, int y) {
         super(name, x, y);
+        this.priority = 3;
         this.arrows = 6;
         this.health = 60;
         this.protection = 25;
@@ -44,6 +45,7 @@ public class Sniper extends Character {
     public String toInfo() {
         return String.format("%s Agility = %d, Accuracy = %d, Stamina = %d;", super.toInfo(), agility,accuracy,stamina);
     }
+    @Override
     public void step(ArrayList<Character> targetTeam) {
         if(heroIsDead(Sniper.this)){
             if (Sniper.this.getArrows()>0){

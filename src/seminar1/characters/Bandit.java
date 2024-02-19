@@ -8,6 +8,7 @@ public class Bandit extends Character {
     protected int stamina;
     public Bandit(String name, int x, int y) {
         super(name, x, y);
+        this.priority = 2;
         this.health = 60;
         this.protection = 25;
         this.strength = 6;

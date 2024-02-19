@@ -8,6 +8,7 @@ public class Monk extends Character {
     protected int mana;
     public Monk(String name, int x, int y) {
         super(name, x, y);
+        this.priority = 1;
         this.health = 80;
         this.protection = 35;
         this.faith = 4;
