@@ -27,12 +27,11 @@ public class Main {
         }
         System.out.println("-".repeat(16));
 
+
         ArrayList<Character> all = new ArrayList<>();
         all.addAll(team1);
         all.addAll(team2);
-
         all.sort((o1, o2) -> o2.getPriority()- o1.getPriority());
-
         all.forEach(n->System.out.println(n.toInfo()));
 
 

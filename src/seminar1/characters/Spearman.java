@@ -41,7 +41,7 @@ public class Spearman extends Character{
     public String toString() {return super.toString();}
     @Override
     public String toInfo() {
-        return String.format(" %s Strength = %d; Agility = %d; Stamina = %d;",super.toInfo(), strength, agility, stamina);
+        return String.format("%s Strength = %d; Agility = %d; Stamina = %d;",super.toInfo(), strength, agility, stamina);
     }
 
     @Override

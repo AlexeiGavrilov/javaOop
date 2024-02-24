@@ -41,7 +41,7 @@ public class Bandit extends Character {
     public void Attack(Character target) {super.Attack(target);}
     @Override
     public String toInfo() {
-        return String.format(" %s Strength = %d; Agility = %d; Stamina = %d", super.toInfo(), strength, agility, stamina);
+        return String.format("%s Strength = %d; Agility = %d; Stamina = %d", super.toInfo(), strength, agility, stamina);
     }
     @Override
     public String toString() {return super.toString();}

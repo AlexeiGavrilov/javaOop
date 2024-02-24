@@ -11,7 +11,7 @@ public class Sniper extends Character {
         super(name, x, y);
         this.priority = 3;
         this.arrows = 6;
-        this.health = 60;
+        this.health = 50;
         this.protection = 25;
         this.agility = 6;
         this.accuracy = 5;
@@ -47,9 +47,9 @@ public class Sniper extends Character {
     }
     @Override
     public void step(ArrayList<Character> targetTeam) {
-        if(heroIsDead(Sniper.this)){
-            if (Sniper.this.getArrows()>0){
-                Attack(targetTeam.get(findNearestEnemy(targetTeam)-1));
+        if(Sniper.this.heroIsDead(Sniper.this)){
+            if (Sniper.this.getArrows()>=1){
+                Attack(targetTeam.get(findNearestEnemy(targetTeam)));
                 System.out.println("Атаковали!!!");
                 this.arrows-=1;
                 Sniper.this.setArrows(this.arrows);

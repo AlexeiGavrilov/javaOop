@@ -49,9 +49,9 @@ public class Crossbowman extends Character {
 
     @Override
     public void step(ArrayList<Character> targetTeam) {
-        if(heroIsDead(Crossbowman.this)){
-            if (Crossbowman.this.getArrows()>0){
-                Attack(targetTeam.get(findNearestEnemy(targetTeam)-1));
+        if(Crossbowman.this.heroIsDead(Crossbowman.this)){
+            if (Crossbowman.this.getArrows()>=1){
+                Attack(targetTeam.get(findNearestEnemy(targetTeam)));
                 System.out.println("Атаковали!!!");
                 this.arrows-=1;
                 Crossbowman.this.setArrows(this.arrows);

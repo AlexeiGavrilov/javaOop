@@ -37,16 +37,16 @@ abstract public class Character implements ActionsOfChar, Step {
 
     public int findNearestEnemy(ArrayList<Character> targetTeam){
         double minDistanse = Double.MAX_VALUE;
-        int id = -1;
+        int index = -1;
         for (Character character : targetTeam) {
             if (Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
                     character.getPosition().getX(),character.getPosition().getY()) < minDistanse){
                 minDistanse = Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
                         character.getPosition().getX(),character.getPosition().getY());
-                id = character.getId();
+                index = targetTeam.indexOf(character);
             }
         }
-        return id;
+        return index;
     }
     public String toInfo() {
         return String.format("Type = %s; ID = %d; Name = %s; %s; Health = %d; Protection = %d",
@@ -58,9 +58,7 @@ abstract public class Character implements ActionsOfChar, Step {
         if (target.getHealth() <= 0) {
             System.out.printf("%s dead.", target.getName());
             return false;
-        } else System.out.printf("%s is life left %d, protection left %d\n",target.getName(), target.getHealth(),
-                target.getProtection());
-        return true;
+        } else return true;
     }
 
     protected int dealDamage(int damage, Character target) {
