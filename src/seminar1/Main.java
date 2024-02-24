@@ -15,21 +15,21 @@ public class Main {
         ArrayList<Character> team1 = new ArrayList<>();
         ArrayList<Character> team2 = new ArrayList<>();
         FillTeam.FillTeamRandomChar(team1, team2);
-        for (Character character : team1) {
-            System.out.println(character.toInfo());
-        }
-        System.out.println();
-        for (Character character : team2) {
-            System.out.println(character.toInfo());
-        }
+//        ArrayList<Character> all = new ArrayList<>();
+//        all.addAll(team1);
+//        all.addAll(team2);
+//        all.sort((o1, o2) -> o2.getPriority()- o1.getPriority());
+//        all.forEach(n->System.out.println(n.toInfo()));
+
+        team1.sort(((o1, o2) -> o2.getPriority()- o1.getPriority()));
+        team2.sort(((o1, o2) -> o2.getPriority()- o1.getPriority()));
+        team1.forEach(n-> System.out.println(n.toInfo()));
         System.out.println("-".repeat(16));
-
-
-        ArrayList<Character> all = new ArrayList<>();
-        all.addAll(team1);
-        all.addAll(team2);
-        all.sort((o1, o2) -> o2.getPriority()- o1.getPriority());
-        all.forEach(n->System.out.println(n.toInfo()));
+        team2.forEach(n-> System.out.println(n.toInfo()));
+        System.out.println("-".repeat(16));
+        team1.forEach(n->n.step(team2));
+        System.out.println("-".repeat(16));
+        team2.forEach(n->n.step(team1));
 
 
     }

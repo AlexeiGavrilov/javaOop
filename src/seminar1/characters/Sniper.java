@@ -50,7 +50,6 @@ public class Sniper extends Character {
         if(Sniper.this.heroIsDead(Sniper.this)){
             if (Sniper.this.getArrows()>=1){
                 Attack(targetTeam.get(findNearestEnemy(targetTeam)));
-                System.out.println("Атаковали!!!");
                 this.arrows-=1;
                 Sniper.this.setArrows(this.arrows);
             }else {

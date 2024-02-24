@@ -82,7 +82,8 @@ abstract public class Character implements ActionsOfChar, Step {
     }
     public void Attack(Character target) {
         int damage = Character.rnd.nextInt(2, 4);
-        System.out.printf("%s caused damage %d to %s!\n",this.getName(),Character.this.dealDamage(damage, target), target.getName());
+        System.out.printf("%s (ID %d) caused damage %d to %s (ID %d)!\n",this.getName(), this.id,
+                Character.this.dealDamage(damage, target), target.getName(), target.getId());
         heroIsDead(target);
 
     }
