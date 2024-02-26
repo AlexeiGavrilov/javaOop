@@ -48,7 +48,7 @@ public class Magician extends Character {
     }
 
     @Override
-    public void step(ArrayList<Character> targetTeam) {
+    public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
 
     }
     public int getIntelligence() {return intelligence;}

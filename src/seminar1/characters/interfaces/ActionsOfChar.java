@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface ActionsOfChar {
 
-    int findNearestEnemy(ArrayList<Character> targetTeam);
+    Character findNearestEnemy(ArrayList<Character> targetTeam);
 }

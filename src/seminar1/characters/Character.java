@@ -35,30 +35,41 @@ abstract public class Character implements ActionsOfChar, Step {
         this.protection = 1;
     }
 
-    public int findNearestEnemy(ArrayList<Character> targetTeam){
+//    public Character findNearestEnemy(ArrayList<Character> targetTeam){
+//        double minDistanse = Double.MAX_VALUE;
+//        Character target = null;
+//        for (Character character : targetTeam) {
+//            if (Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
+//                    character.getPosition().getX(),character.getPosition().getY()) < minDistanse){
+//                minDistanse = Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
+//                        character.getPosition().getX(),character.getPosition().getY());
+//                target = character;
+//            }
+//        }
+//        return target;
+//    }
+
+    public Character findNearestEnemy(ArrayList<Character> targetTeam){
         double minDistanse = Double.MAX_VALUE;
-        int index = -1;
+        Character target = null;
         for (Character character : targetTeam) {
-            if (Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
-                    character.getPosition().getX(),character.getPosition().getY()) < minDistanse){
-                minDistanse = Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
-                        character.getPosition().getX(),character.getPosition().getY());
-                index = targetTeam.indexOf(character);
+            if (position.findDistanse(character) < minDistanse && heroIsDead()){
+                minDistanse = position.findDistanse(character);
+                target = character;
             }
         }
-        return index;
+        return target;
     }
+
+
     public String toInfo() {
         return String.format("Type = %s; ID = %d; Name = %s; %s; Health = %d; Protection = %d",
                 this.getClass().getSimpleName(),id, name, position.toString(),health, protection);
     }
     @Override
     public String toString() {return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);}
-    public boolean heroIsDead(Character target) {
-        if (target.getHealth() <= 0) {
-            System.out.printf("%s dead.", target.getName());
-            return false;
-        } else return true;
+    public boolean heroIsDead() {
+        return this.getHealth() > 0;
     }
 
     protected int dealDamage(int damage, Character target) {
@@ -84,8 +95,6 @@ abstract public class Character implements ActionsOfChar, Step {
         int damage = Character.rnd.nextInt(2, 4);
         System.out.printf("%s (ID %d) caused damage %d to %s (ID %d)!\n",this.getName(), this.id,
                 Character.this.dealDamage(damage, target), target.getName(), target.getId());
-        heroIsDead(target);
-
     }
 
     public void setName(String name) {this.name = name;}

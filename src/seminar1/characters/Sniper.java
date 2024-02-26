@@ -46,16 +46,12 @@ public class Sniper extends Character {
         return String.format("%s Agility = %d, Accuracy = %d, Stamina = %d;", super.toInfo(), agility,accuracy,stamina);
     }
     @Override
-    public void step(ArrayList<Character> targetTeam) {
-        if(Sniper.this.heroIsDead(Sniper.this)){
-            if (Sniper.this.getArrows()>=1){
-                Attack(targetTeam.get(findNearestEnemy(targetTeam)));
-                this.arrows-=1;
-                Sniper.this.setArrows(this.arrows);
-            }else {
-                System.out.println("Give me more arrows!!!");
-            }
-        };
+    public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
+        if(heroIsDead() && getArrows()>0){
+            Attack(findNearestEnemy(targetTeam));
+            this.arrows-=1;
+            Sniper.this.setArrows(this.arrows);
+        }
     }
     @Override
     public String toString() {return super.toString();}

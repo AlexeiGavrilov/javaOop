@@ -53,7 +53,26 @@ public class Bandit extends Character {
     protected void setStamina(int stamina) {this.stamina = stamina;}
 
     @Override
-    public void step(ArrayList<Character> targetTeam) {
+    public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
+        if (!heroIsDead()) return;
+        Character unit = findNearestEnemy(targetTeam);
+        if (position.findDistanse(unit) < 2) {
+            Attack(unit);
+            System.out.println(toInfo());
+            return;
+        }
+        Place diff = this.position.getDiff(unit.position);
+        Place currentPos = new Place(position.getX(), position.getY());
+        if (Math.abs(diff.getX()) > Math.abs(diff.getY())) {
+            position.setX(position.getX() + diff.getX() > 0 ?  1 : -1);
+            System.out.println(toInfo());
+        } else position.setY(position.getY() + diff.getY() > 0 ?  1 : -1);
+        System.out.println(toInfo());
+        friends.forEach(n -> {
+            if (n.position.equals(position)) {
+                this.position = currentPos;
+            }
+        });
 
     }
 }

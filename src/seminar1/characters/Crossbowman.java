@@ -48,16 +48,12 @@ public class Crossbowman extends Character {
     public String toString() {return super.toString();}
 
     @Override
-    public void step(ArrayList<Character> targetTeam) {
-        if(Crossbowman.this.heroIsDead(Crossbowman.this)){
-            if (Crossbowman.this.getArrows()>=1){
-                Attack(targetTeam.get(findNearestEnemy(targetTeam)));
+    public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
+        if(heroIsDead() && getArrows()>0){
+                Attack(findNearestEnemy(targetTeam));
                 this.arrows-=1;
                 Crossbowman.this.setArrows(this.arrows);
-            }else {
-                System.out.println("Give me more arrows!!!");
             }
-        };
     }
 
     public int getAgility() {return agility;}

@@ -46,7 +46,7 @@ public class Peasant extends Character {
     }
 
     @Override
-    public void step(ArrayList<Character> targetTeam) {
+    public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
 
     }
     @Override
