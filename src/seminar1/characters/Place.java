@@ -8,10 +8,13 @@ public class Place {
         this.y = y;
     }
 
+
+
     public double findDistanse (Character target) {
         return Math.sqrt((Math.pow(target.position.getX() - this.getX(), 2)) +
                 (Math.pow(target.position.getY() - this.getY(), 2)));
     }
+    
     @Override
     public String toString() {return String.format("Position = (%d,%d)",x,y);}
     public int getX() {return x;}

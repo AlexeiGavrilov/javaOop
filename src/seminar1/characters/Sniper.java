@@ -10,12 +10,12 @@ public class Sniper extends Character {
     public Sniper(String name, int x, int y) {
         super(name, x, y);
         this.priority = 3;
-        this.arrows = 6;
+        this.arrows = 60;
         this.health = 50;
-        this.protection = 25;
+        this.protection = 50;
         this.agility = 6;
         this.accuracy = 5;
-        this.stamina = 40;
+        this.stamina = 400;
         this.id = Character.getCount();
     }
     @Override
@@ -47,14 +47,15 @@ public class Sniper extends Character {
     }
     @Override
     public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
+        Character target = findNearestEnemy(targetTeam);
         if(heroIsDead() && getArrows()>0){
-            Attack(findNearestEnemy(targetTeam));
+            Attack(target);
             this.arrows-=1;
             Sniper.this.setArrows(this.arrows);
         }
     }
     @Override
-    public String toString() {return super.toString();}
+    public String toString() {return super.toString()+ " \u2916 " + arrows;}
     public int getAgility() {return agility;}
     public int getStamina() {return stamina;}
     public int getAccuracy() {return accuracy;}

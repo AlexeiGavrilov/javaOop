@@ -25,7 +25,6 @@ abstract public class Character implements ActionsOfChar, Step {
     static {count =0;}
     private static Random rnd = new Random();
 
-
     public Character(String name, int x, int y) {
         count++;
         this.priority =0;
@@ -35,73 +34,44 @@ abstract public class Character implements ActionsOfChar, Step {
         this.protection = 1;
     }
 
-//    public Character findNearestEnemy(ArrayList<Character> targetTeam){
-//        double minDistanse = Double.MAX_VALUE;
-//        Character target = null;
-//        for (Character character : targetTeam) {
-//            if (Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
-//                    character.getPosition().getX(),character.getPosition().getY()) < minDistanse){
-//                minDistanse = Place.findDistance(Character.this.getPosition().getX(), Character.this.getPosition().getY(),
-//                        character.getPosition().getX(),character.getPosition().getY());
-//                target = character;
-//            }
-//        }
-//        return target;
-//    }
-
     public Character findNearestEnemy(ArrayList<Character> targetTeam){
         double minDistanse = Double.MAX_VALUE;
         Character target = null;
         for (Character character : targetTeam) {
-            if (position.findDistanse(character) < minDistanse && heroIsDead()){
+            if (position.findDistanse(character) < minDistanse && character.getHealth()>0){
                 minDistanse = position.findDistanse(character);
                 target = character;
             }
         }
         return target;
-    }
 
+    }
 
     public String toInfo() {
         return String.format("Type = %s; ID = %d; Name = %s; %s; Health = %d; Protection = %d",
                 this.getClass().getSimpleName(),id, name, position.toString(),health, protection);
     }
     @Override
-    public String toString() {return String.format("Type = %s; Name = %s", this.getClass().getSimpleName(), name);}
+    public String toString() {
+        return String.format("%s = Name; Type = %s; \u2665 = %d; \u2699 = %d;", name, this.getClass().getSimpleName(),
+                health,protection);}
     public boolean heroIsDead() {
         return this.getHealth() > 0;
     }
 
     protected int dealDamage(int damage, Character target) {
-        if (target.protection>0){
-            target.protection -= damage*2;
-            if (target.protection <= 0){
-                target.health -= damage+10;
-                setHealth(target.health);
-                return damage+10;
-            }
-            setProtection(target.protection);
-            target.health -= damage/2;
-            setHealth(target.health);
-            return damage/2;
-        }else {
-            target.health -= damage+10;
-            setHealth(target.health);
-            return damage+10;
-        }
-
+       return 0;
     }
     public void Attack(Character target) {
         int damage = Character.rnd.nextInt(2, 4);
-        System.out.printf("%s (ID %d) caused damage %d to %s (ID %d)!\n",this.getName(), this.id,
-                Character.this.dealDamage(damage, target), target.getName(), target.getId());
+        Character.this.dealDamage(damage, target);
     }
 
-    public void setName(String name) {this.name = name;}
+    protected void setName(String name) {this.name = name;}
 
-    public void setHealth(int health) {this.health = health;}
+    protected void setHealth(int health) {this.health = health;}
 
-    public void setProtection(int protection) {this.protection = protection;}
+    protected void setProtection(int protection) {this.protection = protection;}
 
     public String getName() {return name;}
 

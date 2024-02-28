@@ -9,35 +9,15 @@ public class Peasant extends Character {
     protected int stamina;
     public Peasant(String name, int x, int y) {
         super(name, x, y);
-        this.priority =0;
+        this.priority = 0;
         this.health = 30;
-        this.protection = 10;
+        this.protection = 20;
         this.strength = 4;
         this.agility = 2;
         this.stamina = 15;
         this.id = Character.getCount();
     }
-    @Override
-    protected int dealDamage(int damage, Character target) {
-        if (this.stamina < 0 || (this.stamina -= this.strength / 2) < 0) {
-            System.out.printf("Игроку %s не хватает ресурсов нанести удар", this.name);
-        }else {
-            this.stamina -= this.strength / 2;
-            setStamina(this.stamina);
-            if (target.getProtection() > 0) {
-                target.protection -= damage * this.strength;
-                target.setProtection(target.protection);
-                target.health -= (damage * this.agility) / 2;
-                target.setHealth(target.health);
-                return (damage * this.agility) / 2;
-            } else {
-                target.health -= damage * this.strength;
-                target.setHealth(target.health);
-                return damage * this.strength;
-            }
-        }
-        return 0;
-    }
+
     @Override
     public void Attack(Character target) {super.Attack(target);}
     @Override

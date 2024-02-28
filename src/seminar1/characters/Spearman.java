@@ -9,15 +9,16 @@ public class Spearman extends Character{
     public Spearman(String name, int x, int y) {
         super(name, x, y);
         this.priority = 2;
-        this.health = 100;
+        this.health = 160;
         this.protection = 80;
         this.strength = 2;
         this.agility = 2;
-        this.stamina = 60;
+        this.stamina = 600;
         this.id = Character.getCount();
     }
     @Override
     protected int dealDamage(int damage, Character target) {
+        if ((!target.heroIsDead()))  return 0;
         if (this.stamina<0 || (this.stamina -= this.strength / 2)<0){
             System.out.printf("Игроку %s не хватает ресурсов нанести удар",this.name);
         }else {
@@ -52,19 +53,20 @@ public class Spearman extends Character{
             System.out.println(toInfo());
             return;
         }
-        Place diff = this.position.getDiff(unit.position);
-        Place currentPos = new Place(position.getX(), position.getY());
-        if (Math.abs(diff.getX()) > Math.abs(diff.getY())) {
-            position.setX(position.getX() + diff.getX() > 0 ?  1 : -1);
-            System.out.println(toInfo());
-        } else position.setY(position.getY() + diff.getY() > 0 ?  1 : -1);
-        System.out.println(toInfo());
-        friends.forEach(n -> {
-            if (n.position.equals(position)) {
-                this.position = currentPos;
-            }
-        });
+        Place diff = position.getDiff(unit.position);
+        Place newPosition = new Place(position.x, position.y);
+        if (Math.abs(diff.x) > Math.abs(diff.y))
+
+            newPosition.x += diff.x < 0 ? 1 : -1;
+        else
+            newPosition.y += diff.y < 0 ? 1 : -1;
+        for (Character character : friends) {
+            if (character.position.equals(newPosition) && character.health > 0) return;
+
+        }
+        this.position = newPosition;
     }
+
     public int getStrength() {return strength;}
     public int getAgility() {return agility;}
     public int getStamina() {return stamina;}

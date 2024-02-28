@@ -11,57 +11,56 @@ import java.util.Random;
 public class FillTeam {
     public static void FillTeamRandomChar(ArrayList<Character> team1, ArrayList<Character> team2) {
         Random rnd = new Random();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 11; i++) {
             switch (rnd.nextInt(0, 7)) {
                 case 0:
-                    team1.add(new Peasant(getName(), i, 0));
+                    team1.add(new Peasant(getName(), i, 1));
                     break;
                 case 1:
-                    team1.add(new Bandit(getName(), i, 0));
+                    team1.add(new Bandit(getName(), i, 1));
                     break;
                 case 2:
-                    team1.add(new Crossbowman(getName(), i, 0));
+                    team1.add(new Crossbowman(getName(), i, 1));
                     break;
                 case 3:
-                    team1.add(new Magician(getName(), i, 0));
+                    team1.add(new Magician(getName(), i, 1));
                     break;
                 case 4:
-                    team1.add(new Monk(getName(), i, 0));
+                    team1.add(new Monk(getName(), i, 1));
                     break;
                 case 5:
-                    team1.add(new Sniper(getName(), i, 0));
+                    team1.add(new Sniper(getName(), i, 1));
                     break;
                 case 6:
-                    team1.add(new Spearman(getName(), i, 0));
+                    team1.add(new Spearman(getName(), i, 1));
                     break;
             }
 
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 11; i++) {
             switch (rnd.nextInt(0, 7)) {
                 case 0:
-                    team2.add(new Peasant(getName(), i, 9));
+                    team2.add(new Peasant(getName(), i, 10));
                     break;
                 case 1:
-                    team2.add(new Bandit(getName(), i, 9));
+                    team2.add(new Bandit(getName(), i, 10));
                     break;
                 case 2:
-                    team2.add(new Crossbowman(getName(), i, 9));
+                    team2.add(new Crossbowman(getName(), i, 10));
                     break;
                 case 3:
-                    team2.add(new Magician(getName(), i, 9));
+                    team2.add(new Magician(getName(), i, 10));
                     break;
                 case 4:
-                    team2.add(new Monk(getName(), i, 9));
+                    team2.add(new Monk(getName(), i, 10));
                     break;
                 case 5:
-                    team2.add(new Sniper(getName(), i, 9));
+                    team2.add(new Sniper(getName(), i, 10));
                     break;
                 case 6:
-                    team2.add(new Spearman(getName(), i, 9));
+                    team2.add(new Spearman(getName(), i, 10));
                     break;
             }
-
         }
 
     }

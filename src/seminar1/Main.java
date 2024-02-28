@@ -11,27 +11,54 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {
+    public static ArrayList<Character> holyTeam = new ArrayList<>();
+    public  static ArrayList<Character> darkTeam = new ArrayList<>();
+    public static ArrayList<Character> allTeam = new ArrayList<>();
 
     public static void main(String[] args) {
-        ArrayList<Character> team1 = new ArrayList<>();
-        ArrayList<Character> team2 = new ArrayList<>();
-        FillTeam.FillTeamRandomChar(team1, team2);
-        ArrayList<Character> all = new ArrayList<>();
-        all.addAll(team1);
-        all.addAll(team2);
-        all.sort((o1, o2) -> o2.getPriority()- o1.getPriority());
-        all.forEach(n->System.out.println(n.toInfo()));
+
+        FillTeam.FillTeamRandomChar(holyTeam, darkTeam);
+
+        allTeam.addAll(holyTeam);
+        allTeam.addAll(darkTeam);
+        allTeam.sort((o1, o2) -> o2.getPriority() - o1.getPriority());
+        allTeam.forEach(n -> System.out.println(n.toInfo()));
+
+
 
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
-        while (flag){
-            if (scanner.nextLine() == ""){
-                for (Character character : all) {
-                    if (team1.contains(character)) character.step(team2, team1);
-                    else character.step(team1, team2);
-                }
-            } else flag = false;
+
+        while (flag) {
+
+            View.view();
+            scanner.nextLine();
+            int summ1HP = 0;
+            int summ2HP = 0;
+            for (Character unit : holyTeam) {
+                summ1HP += unit.getHealth();
+            }
+            for (Character unit : darkTeam) {
+                summ2HP += unit.getHealth();
+            }
+            if (summ1HP == 0) {
+
+                System.out.println("Победила команда darkTeam");
+                flag = false;
+            }
+            if (summ2HP == 0) {
+                System.out.println("Победила команда holyTeam");
+                flag = false;
+            }
+            for (Character unit : allTeam) {
+                if (holyTeam.contains(unit)) unit.step(darkTeam, holyTeam);
+                else unit.step(holyTeam, darkTeam);
+            }
+
+
         }
+
+
     }
 
 }

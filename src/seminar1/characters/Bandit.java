@@ -9,17 +9,16 @@ public class Bandit extends Character {
     public Bandit(String name, int x, int y) {
         super(name, x, y);
         this.priority = 2;
-        this.health = 60;
-        this.protection = 25;
+        this.health = 150;
+        this.protection = 50;
         this.strength = 6;
         this.agility = 6;
-        this.stamina = 40;
+        this.stamina = 400;
         this.id = Character.getCount();
     }
     @Override
     protected int dealDamage(int damage, Character target) {
         if (this.stamina < 0 || (this.stamina -= this.strength / 2) < 0) {
-            System.out.printf("Игроку %s не хватает ресурсов нанести удар", this.name);
         } else {
             this.stamina -= this.strength / 2;
             setStamina(this.stamina);
@@ -54,25 +53,24 @@ public class Bandit extends Character {
 
     @Override
     public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
-        if (!heroIsDead()) return;
         Character unit = findNearestEnemy(targetTeam);
+        if (unit==null) return;
         if (position.findDistanse(unit) < 2) {
             Attack(unit);
             System.out.println(toInfo());
             return;
         }
-        Place diff = this.position.getDiff(unit.position);
-        Place currentPos = new Place(position.getX(), position.getY());
-        if (Math.abs(diff.getX()) > Math.abs(diff.getY())) {
-            position.setX(position.getX() + diff.getX() > 0 ?  1 : -1);
-            System.out.println(toInfo());
-        } else position.setY(position.getY() + diff.getY() > 0 ?  1 : -1);
-        System.out.println(toInfo());
-        friends.forEach(n -> {
-            if (n.position.equals(position)) {
-                this.position = currentPos;
-            }
-        });
+        Place diff = position.getDiff(unit.position);
+        Place newPosition = new Place(position.x, position.y);
+        if (Math.abs(diff.x) > Math.abs(diff.y))
 
+            newPosition.x += diff.x < 0 ? 1 : -1;
+        else
+            newPosition.y += diff.y < 0 ? 1 : -1;
+        for (Character character : friends) {
+            if (character.position.equals(newPosition) && character.health > 0) return;
+
+        }
+        this.position = newPosition;
     }
 }
