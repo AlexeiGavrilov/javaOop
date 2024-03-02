@@ -25,7 +25,6 @@ public class Main {
         allTeam.forEach(n -> System.out.println(n.toInfo()));
 
 
-
         Scanner scanner = new Scanner(System.in);
         boolean flag = true;
 
@@ -41,16 +40,18 @@ public class Main {
             for (Character unit : darkTeam) {
                 summ2HP += unit.getHealth();
             }
-            if (summ1HP == 0) {
+            if (summ1HP <= 0) {
 
                 System.out.println("Победила команда darkTeam");
                 flag = false;
+
             }
-            if (summ2HP == 0) {
+            if (summ2HP <= 0) {
                 System.out.println("Победила команда holyTeam");
                 flag = false;
             }
             for (Character unit : allTeam) {
+
                 if (holyTeam.contains(unit)) unit.step(darkTeam, holyTeam);
                 else unit.step(holyTeam, darkTeam);
             }

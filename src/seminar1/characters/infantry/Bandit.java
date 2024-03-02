@@ -9,6 +9,7 @@ public class Bandit extends BaseInfantry {
     public Bandit(String name, int x, int y) {
         super(name, x, y);
     }
+    @Override
     public String getInfo() {
         return "Бандит";
     }

@@ -10,6 +10,7 @@ public class Magician extends BaseWizards {
         super(name, x, y);
     }
 
+    @Override
     public String getInfo() {
         return "Волшебник";
     }

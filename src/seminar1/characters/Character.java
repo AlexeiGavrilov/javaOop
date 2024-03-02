@@ -22,6 +22,8 @@ abstract public class Character implements ActionsOfChar, Step {
     protected int id;
     protected int priority;
 
+    protected int maxHealth;
+
     static {count =0;}
     private static Random rnd = new Random();
 
@@ -33,6 +35,7 @@ abstract public class Character implements ActionsOfChar, Step {
         this.name = name;
         this.health = 1;
         this.protection = 1;
+        this.maxHealth = this.health;
     }
 
     public Character findNearestEnemy(ArrayList<Character> targetTeam){
@@ -48,24 +51,30 @@ abstract public class Character implements ActionsOfChar, Step {
 
     }
 
+
+
+
+
     public String toInfo() {
         return String.format("Type = %s; ID = %d; Name = %s; %s; Health = %d; Protection = %d",
                 this.getClass().getSimpleName(),id, name, position.toString(),health, protection);
     }
     @Override
     public String toString() {
-        return String.format("%s = Name; Type = %s; \u2665 = %d; \u2699 = %d;", name, this.getClass().getSimpleName(),
-                health,protection);}
+        return String.format("%s; \u2665 = %d; \u2699 = %d;", name, health,protection);}
     public boolean heroIsDead() {
         return this.getHealth() > 0;
     }
 
-    protected int dealDamage(int damage, Character target) {
-       return 0;
-    }
+    protected void dealDamage(int damage, Character target) {}
     public void Attack(Character target) {
         int damage = Character.rnd.nextInt(2, 4);
         Character.this.dealDamage(damage, target);
+
+    }
+
+    public String getInfo() {
+        return null;
     }
 
     protected void setName(String name) {this.name = name;}

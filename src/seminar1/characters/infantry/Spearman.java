@@ -9,6 +9,7 @@ public class Spearman extends BaseInfantry {
         super(name, x, y);
     }
 
+    @Override
     public String getInfo() {
         return "Копейщик";
     }

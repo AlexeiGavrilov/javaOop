@@ -13,32 +13,25 @@ public class BaseInfantry extends Character {
     public BaseInfantry(String name, int x, int y) {
         super(name, x, y);
         this.priority = 2;
-        this.health = 150;
-        this.protection = 50;
-        this.strength = 6;
-        this.agility = 6;
-        this.stamina = 400;
+        this.health = 70;
+        this.protection = 100;
+        this.strength = 3;
+        this.agility = 3;
+        this.stamina = 40;
         this.id = Character.getCount();
     }
     @Override
-    protected int dealDamage(int damage, Character target) {
-        if (stamina < 0 || (stamina -= strength / 2) < 0) {
-            return 0;
+    protected void dealDamage(int damage, Character target) {
+        if (stamina <= 0 || (stamina -= strength * 2) < 0) {
+            stamina+=20;
         } else {
-            stamina -= strength / 2;
-            setStamina(stamina);
+            stamina -= strength * 2;
             if (target.getProtection() > 0) {
                 target.protection -= damage * strength;
-                target.setProtection(target.protection);
                 target.health -= (damage * agility) / 2;
-                target.setHealth(target.health);
-                return (damage * agility) / 2;
-            } else {
-                target.health -= damage * strength;
-                target.setHealth(target.health);
-                return damage * strength;
-            }
+            } else {target.health -= damage * agility;}
         }
+        if (target.health<0) target.health = 0;
     }
     @Override
     public void Attack(Character target) {super.Attack(target);}
@@ -49,12 +42,12 @@ public class BaseInfantry extends Character {
 
     @Override
     public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
+        if (health <= 0) return;
         Character unit = findNearestEnemy(targetTeam);
         if (unit==null) return;
         if (position.findDistanse(unit) < 2) {
-            Attack(unit);
-            System.out.println(toInfo());
-            return;
+           Attack(unit);
+           return;
         }
         Place diff = position.getDiff(unit.position);
         Place newPosition = new Place(position.x, position.y);
@@ -70,6 +63,7 @@ public class BaseInfantry extends Character {
         this.position = newPosition;
     }
 
+
     @Override
     public String toString() {return super.toString();}
     public int getStrength() {return strength;}
@@ -78,4 +72,7 @@ public class BaseInfantry extends Character {
     protected void setStrength(int strength) {this.strength = strength;}
     protected void setAgility(int agility) {this.agility = agility;}
     protected void setStamina(int stamina) {this.stamina = stamina;}
+
+/**/
+
 }

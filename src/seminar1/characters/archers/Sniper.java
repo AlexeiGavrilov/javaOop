@@ -9,7 +9,7 @@ public class Sniper extends BaseArcher {
     public Sniper(String name, int x, int y) {
         super(name, x, y);
     }
-
+    @Override
     public String getInfo() {
         return "Снайпер";
     }
