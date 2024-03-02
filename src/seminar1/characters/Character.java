@@ -16,14 +16,15 @@ import java.util.Random;
 abstract public class Character implements ActionsOfChar, Step {
     private static int count;
     protected String name;
-    protected int health;
-    protected int protection;
+    public int health;
+    public int protection;
     protected Place position;
     protected int id;
     protected int priority;
 
     static {count =0;}
     private static Random rnd = new Random();
+
 
     public Character(String name, int x, int y) {
         count++;
@@ -69,9 +70,9 @@ abstract public class Character implements ActionsOfChar, Step {
 
     protected void setName(String name) {this.name = name;}
 
-    protected void setHealth(int health) {this.health = health;}
+    public void setHealth(int health) {this.health = health;}
 
-    protected void setProtection(int protection) {this.protection = protection;}
+    public void setProtection(int protection) {this.protection = protection;}
 
     public String getName() {return name;}
 
