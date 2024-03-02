@@ -7,6 +7,8 @@ import seminar1.characters.archers.Sniper;
 import seminar1.characters.enums.Names;
 import seminar1.characters.infantry.Bandit;
 import seminar1.characters.infantry.Spearman;
+import seminar1.characters.wizards.Magician;
+import seminar1.characters.wizards.Monk;
 
 import java.util.ArrayList;
 import java.util.Random;
