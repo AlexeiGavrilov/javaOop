@@ -18,7 +18,7 @@ abstract public class Character implements ActionsOfChar, Step {
     protected String name;
     public int health;
     public int protection;
-    protected Place position;
+    public Place position;
     protected int id;
     protected int priority;
 

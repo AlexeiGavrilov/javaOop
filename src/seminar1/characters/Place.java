@@ -1,8 +1,8 @@
 package seminar1.characters;
 
 public class Place {
-    protected int x;
-    protected int y;
+    public int x;
+    public int y;
     public Place(int x, int y) {
         this.x = x;
         this.y = y;

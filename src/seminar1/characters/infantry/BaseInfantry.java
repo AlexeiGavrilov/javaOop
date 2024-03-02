@@ -1,12 +1,16 @@
-package seminar1.characters;
+package seminar1.characters.infantry;
+
+import seminar1.characters.Character;
+import seminar1.characters.Place;
 
 import java.util.ArrayList;
 
-public class Bandit extends Character {
+public class BaseInfantry extends Character {
+
     protected int strength;
     protected int agility;
     protected int stamina;
-    public Bandit(String name, int x, int y) {
+    public BaseInfantry(String name, int x, int y) {
         super(name, x, y);
         this.priority = 2;
         this.health = 150;
@@ -18,23 +22,23 @@ public class Bandit extends Character {
     }
     @Override
     protected int dealDamage(int damage, Character target) {
-        if (this.stamina < 0 || (this.stamina -= this.strength / 2) < 0) {
+        if (stamina < 0 || (stamina -= strength / 2) < 0) {
+            return 0;
         } else {
-            this.stamina -= this.strength / 2;
-            setStamina(this.stamina);
+            stamina -= strength / 2;
+            setStamina(stamina);
             if (target.getProtection() > 0) {
-                target.protection -= damage * this.strength;
+                target.protection -= damage * strength;
                 target.setProtection(target.protection);
-                target.health -= (damage * this.agility) / 2;
+                target.health -= (damage * agility) / 2;
                 target.setHealth(target.health);
-                return (damage * this.agility) / 2;
+                return (damage * agility) / 2;
             } else {
-                target.health -= damage * this.strength;
+                target.health -= damage * strength;
                 target.setHealth(target.health);
-                return damage * this.strength;
+                return damage * strength;
             }
         }
-        return 0;
     }
     @Override
     public void Attack(Character target) {super.Attack(target);}
@@ -42,14 +46,6 @@ public class Bandit extends Character {
     public String toInfo() {
         return String.format("%s Strength = %d; Agility = %d; Stamina = %d", super.toInfo(), strength, agility, stamina);
     }
-    @Override
-    public String toString() {return super.toString();}
-    public int getStrength() {return strength;}
-    public int getAgility() {return agility;}
-    public int getStamina() {return stamina;}
-    protected void setStrength(int strength) {this.strength = strength;}
-    protected void setAgility(int agility) {this.agility = agility;}
-    protected void setStamina(int stamina) {this.stamina = stamina;}
 
     @Override
     public void step(ArrayList<Character> targetTeam, ArrayList <Character> friends) {
@@ -73,4 +69,13 @@ public class Bandit extends Character {
         }
         this.position = newPosition;
     }
+
+    @Override
+    public String toString() {return super.toString();}
+    public int getStrength() {return strength;}
+    public int getAgility() {return agility;}
+    public int getStamina() {return stamina;}
+    protected void setStrength(int strength) {this.strength = strength;}
+    protected void setAgility(int agility) {this.agility = agility;}
+    protected void setStamina(int stamina) {this.stamina = stamina;}
 }
