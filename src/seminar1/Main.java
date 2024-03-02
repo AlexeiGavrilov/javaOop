@@ -1,13 +1,10 @@
 package seminar1;
 
-import com.sun.source.tree.IfTree;
-import seminar1.characters.*;
 import seminar1.characters.Character;
-import seminar1.characters.forClientCode.FillTeam;
+import seminar1.forClientCode.FillTeam;
+import seminar1.forClientCode.View;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Main {

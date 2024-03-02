@@ -1,4 +1,4 @@
-package seminar1.characters.interfaces;
+package seminar1.interfaces;
 
 import seminar1.characters.Character;
 

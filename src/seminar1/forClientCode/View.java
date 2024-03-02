@@ -1,5 +1,6 @@
-package seminar1;
+package seminar1.forClientCode;
 
+import seminar1.Main;
 import seminar1.characters.Character;
 
 import java.util.Collections;

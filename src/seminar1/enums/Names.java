@@ -1,4 +1,4 @@
-package seminar1.characters.enums;
+package seminar1.enums;
 
 public enum Names {
     Арагорн,Арвен,Бильбо,Боромир,Галадриэль,Гимли,Глорфиндел,Голлум,Грима,Гэндальф,Тингол, Трандуил,Фарамир,

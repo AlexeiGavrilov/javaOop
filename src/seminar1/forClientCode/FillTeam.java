@@ -1,9 +1,9 @@
-package seminar1.characters.forClientCode;
+package seminar1.forClientCode;
 
 import seminar1.characters.Character;
 import seminar1.characters.archers.Crossbowman;
 import seminar1.characters.archers.Sniper;
-import seminar1.characters.enums.Names;
+import seminar1.enums.Names;
 import seminar1.characters.infantry.Bandit;
 import seminar1.characters.infantry.Peasant;
 import seminar1.characters.infantry.Spearman;

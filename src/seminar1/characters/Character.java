@@ -1,7 +1,7 @@
 package seminar1.characters;
 
-import seminar1.characters.interfaces.ActionsOfChar;
-import seminar1.characters.interfaces.Step;
+import seminar1.interfaces.ActionsOfChar;
+import seminar1.interfaces.Step;
 
 import java.util.ArrayList;
 import java.util.Random;
