@@ -2,10 +2,11 @@ package seminar1.characters.forClientCode;
 
 import seminar1.characters.*;
 import seminar1.characters.Character;
+import seminar1.characters.archers.Crossbowman;
+import seminar1.characters.archers.Sniper;
 import seminar1.characters.enums.Names;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
 public class FillTeam {

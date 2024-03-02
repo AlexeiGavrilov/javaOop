@@ -1,7 +1,6 @@
 package seminar1.characters.archers;
 
 import seminar1.characters.Character;
-import seminar1.characters.Sniper;
 
 import java.util.ArrayList;
 
